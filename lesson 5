@@ -1,0 +1,34 @@
+ПЕРВОЕ ЗАДАНИЕ ()
+ALTER TABLE users
+MODIFY COLUMN created_at DATETIME NOT NULL,
+MODIFY COLUMN updated_at DATETIME NOT NULL;
+
+
+ВТОРОЕ ЗАДАНИЕ заполнить поле updated_at текущей датой;
+
+UPDATE `like` SET
+updated_at =STR_TO_DATE (updated_at,%d.%m%y  %H:%i);
+SELECT * FROM vk.like;
+
+
+ТРЕТЬЕ ЗАДАНИЕ выбрать пользователей родившихся в августе и мае
+SELECT
+*
+FROM `profile`
+WHERE 
+birthday like '%-08-%' OR '%-05-%';
+
+Задания по агрегации даных 
+
+ПЕРВОЕ ЗАДАНИЕ средний возраст пользователей
+SELECT 
+COUNT(*) AVG
+ORDER BY birthday
+FROM `profile`
+
+ВТОРОЕ ЗАДАНИЕ кол-во дней рождения по дням недели
+SELECT 
+COUNT(*)
+DAYNAME (CONCAT(YEAR(NOW),RIGHT(birthday,6)))
+FROM `profile`
+ORDER BY birthday DESC
