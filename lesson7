@@ -1,0 +1,17 @@
+Первое задание. составьте список пользователей users,которые осуществляли хотя бы один заказ orders.
+SELECT 
+*
+FROM users
+JOIN orders
+WHERE 
+users.id= orders.user_id;
+
+ Второе задание. Выведите список товаров products и разделов catalogs,который соответсвует товару
+
+SELECT
+products.id,
+products.name,
+(SELECT catalog.name FROM catalogs WHERE id= products.catalog_id) AS 'catalog'
+FROM 
+products;
+
