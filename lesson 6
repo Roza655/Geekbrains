@@ -1,0 +1,26 @@
+Первое задание Пусть задан некоторый пользователь. 
+Из всех друзей этого пользователя найдите человека, который больше всех общался с нашим пользователем. 
+SELECT
+ *
+ FROM 
+message
+ WHERE usser_id IN (SELECT 
+ IF (from user_id =11, to user_id, from user_id) AS message_id
+ FROM 
+ friend_request
+ WHERE (from_user_id=11 OR to_user_id=11)
+ AND `status`=1);
+ 
+ 
+ ВТОРОЕ ЗАДАНИЕ подсчитать кол-во лайков 10 самых молодых пользователей (Это задание не получается,выдает ошибку постоянно)
+ 
+ SELECT
+*
+timestampdiff (year,birthday,now()) AS age
+FROM `profile`
+LIMIT 10   
+// так я выбрала самых молодых
+
+SELECT 
+user_id
+(SELECT COUNT(*) FROM `like` WHERE `like`.user_id= `profile.user_id)// так считаю лайки
